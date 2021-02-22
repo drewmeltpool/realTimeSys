@@ -11,9 +11,7 @@
 ## ДОСЛІДЖЕННЯ АВТОКОРЕЛЯЦІЙНОЇ І ВЗАЄМНОЮКОРЕЛЯЦІЙНОЇ ФУНКЦІЙ ВИПАДКОВИХ СИГНАЛІВ
 
 #### Autocorrelation
+![](img/chart1.jpg)
 
-![](img/chart1.jpg)
-![](img/chart1.jpg)
 #### Correlation
-![](img/chart2.jpg)
 ![](img/chart2.jpg)
