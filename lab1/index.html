@@ -10,25 +10,36 @@
     <title>lab1.1</title>
     <style>
         body {
-            padding: 5em;
+            padding: 1em;
             margin: 0;
-            height: 400px;
+        }
+        
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 500px;
+            width: 95vw;
         }
     </style>
 </head>
 
 <body>
-    <h1 class="pb-5">ДОСЛІДЖЕННЯ І РОЗРОБКА МОДЕЛЕЙ ВИПАДКОВИХ СИГНАЛІВ. АНАЛІЗ ЇХ ХАРАКТЕРИСТИК</h1>
+    <h3 class="pb-5">ДОСЛІДЖЕННЯ І РОЗРОБКА МОДЕЛЕЙ ВИПАДКОВИХ СИГНАЛІВ. АНАЛІЗ ЇХ ХАРАКТЕРИСТИК</h3>
     <p><b>Число гармонік в сигналі:</b> 8</p>
     <p><b>Гранична частота, <i>ω</i>гр:</b> 1100</p>
     <p><b>Кількість дискретних відліків, N:</b> 256</p>
-    <canvas id="myChart" width="600" height="600"></canvas>
 
-    <h1 class="pb-5">ДОСЛІДЖЕННЯ АВТОКОРЕЛЯЦІЙНОЇ І ВЗАЄМНОЮКОРЕЛЯЦІЙНОЇ ФУНКЦІЙ ВИПАДКОВИХ СИГНАЛІВ 1.0</h1>
-    <canvas id="secChart" width="600" height="600"></canvas>
-    <h1 class="pb-3">ДОСЛІДЖЕННЯ АВТОКОРЕЛЯЦІЙНОЇ І ВЗАЄМНОЮКОРЕЛЯЦІЙНОЇ ФУНКЦІЙ ВИПАДКОВИХ СИГНАЛІВ 1.2</h1>
-    <canvas id="thirdChart" width="600" height="600"></canvas>
-
+    <div class="chart-container">
+        <canvas id="myChart" width="600" height="600"></canvas>
+    </div>
+    <h3 class="pb-5">ДОСЛІДЖЕННЯ АВТОКОРЕЛЯЦІЙНОЇ І ВЗАЄМНОЮКОРЕЛЯЦІЙНОЇ ФУНКЦІЙ ВИПАДКОВИХ СИГНАЛІВ 1.1</h3>
+    <div class="chart-container">
+        <canvas id="secChart" width="600" height="600"></canvas>
+    </div>
+    <h3 class="pb-3">ДОСЛІДЖЕННЯ АВТОКОРЕЛЯЦІЙНОЇ І ВЗАЄМНОЮКОРЕЛЯЦІЙНОЇ ФУНКЦІЙ ВИПАДКОВИХ СИГНАЛІВ 1.2</h3>
+    <div class="chart-container">
+        <canvas id="thirdChart" width="600" height="600"></canvas>
+    </div>
     <script src="js/main.js"></script>
 </body>
 
