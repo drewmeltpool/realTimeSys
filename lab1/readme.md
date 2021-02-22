@@ -2,9 +2,9 @@
 https://drewmeltpool.github.io/realTimeSys/lab1/
 
 ## lab1.1
-https://drewmeltpool/realTimeSys/lab1/lab1.1.pdf
+https://github.com/drewmeltpool/realTimeSys/blob/main/lab1/lab1.1.pdf
 ## lab1.2
-https://drewmeltpool/realTimeSys/lab1/lab1.2.pdf
+https://github.com/drewmeltpool/realTimeSys/blob/main/lab1/lab1.2.pdf
 
 ## ДОСЛІДЖЕННЯ І РОЗРОБКА МОДЕЛЕЙ ВИПАДКОВИХ СИГНАЛІВ. АНАЛІЗ ЇХ ХАРАКТЕРИСТИК
 ### Варіант №3
