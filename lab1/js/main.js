@@ -1,54 +1,3 @@
-const option = {
-    maintainAspectRatio: false,
-    elements: {
-        point: {
-            radius: 0
-        }
-    },
-    scales: {
-        yAxes: [{
-            stacked: true,
-            gridLines: {
-                display: true,
-                color: "rgba(255,99,132,0.2)"
-            }
-        }],
-        xAxes: [{
-            gridLines: {
-                display: false
-            }
-        }]
-    }
-};
-
-const conf = (name, len, arr) => ({
-    type: 'line',
-    data: {
-        labels: new Array(len).fill(0).map((_, i) => i),
-        datasets: [{
-            lineTension: 0,
-            label: name,
-            backgroundColor: window.chartColors = '#fff',
-            borderColor: window.chartColors = '#07c',
-            borderWidth: 2,
-            fill: false,
-            data: arr,
-        }]
-    },
-    options: option,
-})
-
-const newGraphic = (color, name, arr) => ({
-    lineTension: 0,
-    label: name,
-    backgroundColor: window.chartColors = '#fff',
-    borderColor: window.chartColors = color,
-    borderWidth: 2,
-    fill: false,
-    data: arr,
-})
-
-
 const harmonicsAmount = 8
 const frequency = 1100
 const N = 256
@@ -76,6 +25,70 @@ const correlation = (sig1, sig2) => {
 
 const autoCorrelation = sig => correlation(sig, sig)
 
+const generateRandomColor = range => () => Math.round(Math.random() * range)
+const RGB = generateRandomColor(255)
+const generateRandomColorRGBA = opacity => `rgba(${RGB()},${RGB()},${RGB()},${opacity})`
+
+const howLong = (label, cb) => {
+    const start = window.performance.now()
+    cb()
+    const end = window.performance.now()
+    const duration = end - start
+    console.log(`${label}: ${duration} ms`)
+    return duration;
+}
+
+const option = {
+    maintainAspectRatio: false,
+    elements: {
+        point: {
+            radius: 0
+        }
+    },
+    scales: {
+        yAxes: [{
+            stacked: true,
+            gridLines: {
+                display: true,
+                color: generateRandomColorRGBA(0.2)
+            }
+        }],
+        xAxes: [{
+            gridLines: {
+                display: false
+            }
+        }]
+    }
+}
+
+
+const conf = (name, len, arr) => ({
+    type: 'line',
+    data: {
+        labels: createArray(len).map((_, i) => i),
+        datasets: [{
+            lineTension: 0,
+            label: name,
+            backgroundColor: window.chartColors = '#fff',
+            borderColor: window.chartColors = generateRandomColorRGBA(1),
+            borderWidth: 2,
+            fill: false,
+            data: arr,
+        }]
+    },
+    options: option,
+})
+
+const newGraphic = (name, arr) => ({
+    lineTension: 0,
+    label: name,
+    backgroundColor: window.chartColors = '#fff',
+    borderColor: window.chartColors = generateRandomColorRGBA(1),
+    borderWidth: 2,
+    fill: false,
+    data: arr,
+})
+
 //Usage
 window.onload = function() {
     const ctx = document.querySelector('#myChart').getContext('2d')
@@ -89,13 +102,19 @@ window.onload = function() {
     console.log('Середнє значення', average(sig1))
     console.log('Дисперсія', mathAverageTrick(sig1))
 
-    const secConf = conf('2.0', N / 2, autoCorrelation(sig1))
-    secConf.data.datasets.push(newGraphic('red', '2.1', sig1))
-    const graphic2 = new Chart(ctx2, secConf)
+    const timeAutoCorelation = howLong('autoCorrelation', () => {
+        const secConf = conf('2.0', N / 2, autoCorrelation(sig1))
+        secConf.data.datasets.push(newGraphic('2.1', sig1))
+        const graphic2 = new Chart(ctx2, secConf)
+    })
 
+    const timeCorelation = howLong('correlation', () => {
+        const thirdConf = conf('3.0', N / 2, correlation(sig1, sig2))
+        thirdConf.data.datasets.push(newGraphic('3.1', sig1))
+        thirdConf.data.datasets.push(newGraphic('3.2', sig2))
+        const graphic3 = new Chart(ctx3, thirdConf)
+    })
 
-    const thirdConf = conf('3.0', N / 2, correlation(sig1, sig2))
-    thirdConf.data.datasets.push(newGraphic('red', '3.1', sig1))
-    thirdConf.data.datasets.push(newGraphic('orange', '3.2', sig2))
-    const graphic3 = new Chart(ctx3, thirdConf)
+    console.log(timeAutoCorelation - timeCorelation)
+
 }
