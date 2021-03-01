@@ -1,6 +1,7 @@
 ### Open online
 https://drewmeltpool.github.io/realTimeSys/lab1/
 
+<<<<<<< HEAD
 ### lab1.1
 https://drewmeltpool/realTimeSys/lab1/lab1.1.pdf
 ### lab1.2
