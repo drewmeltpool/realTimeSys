@@ -1,4 +1,4 @@
-### Open online
+# Open online
 https://drewmeltpool.github.io/realTimeSys/lab2/
 
 ### 2.1 ДОСЛІДЖЕННЯ ПАРАМЕТРІВ АЛГОРИТМУ ДИСКРЕТНОГО ПЕРЕТВОРЕННЯ ФУР'Є
