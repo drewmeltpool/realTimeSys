@@ -102,9 +102,9 @@ window.onload = function() {
     const fftSig1 = complexToReal(fft(sig1))
     const graphic3 = new Chart(ctx3, conf('3.0', N, fftSig1))
 
-    const ctx4 = document.querySelector('#fourChart').getContext('2d')
+    // const ctx4 = document.querySelector('#fourChart').getContext('2d')
 
-    const complexityGFTArr = createArray(N).map((_, i) => howLong(() => createSignal(createArray(i + 1))))
+    // const complexityGFTArr = createArray(N).map((_, i) => howLong(() => createSignal(createArray(i + 1))))
 
-    const graphic4 = new Chart(ctx4, conf('4.0', N, complexityGFTArr))
+    // const graphic4 = new Chart(ctx4, conf('4.0', N, complexityGFTArr))
 }
