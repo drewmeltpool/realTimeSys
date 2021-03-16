@@ -2,9 +2,9 @@
 https://drewmeltpool.github.io/realTimeSys/lab2/
 
 ### 2.1 ДОСЛІДЖЕННЯ ПАРАМЕТРІВ АЛГОРИТМУ ДИСКРЕТНОГО ПЕРЕТВОРЕННЯ ФУР'Є
-https://drewmeltpool/realTimeSys/lab2/lab2.1.pdf
+https://github.com/drewmeltpool/realTimeSys/blob/main/lab2/lab2.1.pdf
 ### 2.2 ДОСЛІДЖЕННЯ АЛГОРИТМУ ШВИДКОГО ПЕРЕТВОРЕННЯ ФУР'Є З ПРОРІДЖУВАННЯМ ВІДЛІКІВ СИГНАЛІВ У ЧАСІ
-https://drewmeltpool/realTimeSys/lab2/lab2.2.pdf
+https://github.com/drewmeltpool/realTimeSys/blob/main/lab2/lab2.2.pdf
 
 ### Варіант №3
 Назва                               |Значення
