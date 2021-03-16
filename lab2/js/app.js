@@ -93,18 +93,17 @@ window.onload = function() {
     const sig1 = createSignal(N)
     const graphic = new Chart(ctx, conf('1.0', N, sig1))
 
+    if (!localStorage.getItem('Wpk-dft')) {
+        localStorage.setItem('Wpk-dft', complexToReal(dft(sig1)))
+    }
     const ctx2 = document.querySelector('#secChart').getContext('2d')
-    const dftSig1 = complexToReal(dft(sig1))
+    const dftSig1 = localStorage.getItem('Wpk-dft').split(',') || complexToReal(dft(sig1))
     const graphic2 = new Chart(ctx2, conf('2.0', N, dftSig1))
 
-
+    if (!localStorage.getItem('Wpk-fft')) {
+        localStorage.setItem('Wpk-fft', complexToReal(dft(sig1)))
+    }
     const ctx3 = document.querySelector('#thirdChart').getContext('2d')
-    const fftSig1 = complexToReal(fft(sig1))
+    const fftSig1 = localStorage.getItem('Wpk-fft').split(',') || complexToReal(fft(sig1))
     const graphic3 = new Chart(ctx3, conf('3.0', N, fftSig1))
-
-    // const ctx4 = document.querySelector('#fourChart').getContext('2d')
-
-    // const complexityGFTArr = createArray(N).map((_, i) => howLong(() => createSignal(createArray(i + 1))))
-
-    // const graphic4 = new Chart(ctx4, conf('4.0', N, complexityGFTArr))
 }
