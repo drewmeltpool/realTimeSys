@@ -8,14 +8,15 @@ const ferma = n => {
     const log = []
     while (true) {
         let r = x ** 2 - n
-        let a = (x - Math.sqrt(Math.abs(r))).toFixed(3)
-        let b = (x + Math.sqrt(Math.abs(r))).toFixed(3)
-        if (iteration < 100) log.push({ iteration, a, b })
+        if (iteration < 100) {
+            let a = (x - Math.sqrt(Math.abs(r))).toFixed(3)
+            let b = (x + Math.sqrt(Math.abs(r))).toFixed(3)
+            log.push({ iteration, a, b })
+        }
         iteration++
         y = parseInt(Math.sqrt(r))
         if (y ** 2 === r) {
-            log.push({ iteration, a, b })
-            return { result: [x - y, x + y], log }
+            return { result: [x - y, x + y], log, iteration }
         }
         x++
     }
