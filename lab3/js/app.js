@@ -6,7 +6,7 @@ const answerBox = document.querySelector('#answer-box-js')
 const tableWrapper = document.querySelector('.table-wrapper')
 
 btn.addEventListener('click', () => {
-    const inputValue = parseInt(input.value)
+    const inputValue = input.value
     fermaPromise(inputValue)
         .then(n => ferma(n))
         .then(res => {
@@ -20,19 +20,19 @@ btn.addEventListener('click', () => {
             answerBox.textContent = result.join('*')
             tableWrapper.innerHTML =
                 `
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">a</th>
-                        <th scope="col">b</th>
-                    </tr>
-                </thead>
-                <tbody id="log-js">
-                    ${tbodyStr}
-                </tbody>
-            </table>
-            `
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">a</th>
+                                <th scope="col">b</th>
+                            </tr>
+                        </thead>
+                        <tbody id="log-js">
+                            ${tbodyStr}
+                        </tbody>
+                    </table>
+                    `
         })
         .catch(err => console.log(err))
 })
