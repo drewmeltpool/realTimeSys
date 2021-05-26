@@ -40,7 +40,10 @@ const fft = arr => {
     const evens = fft(arr.filter((_, i) => !(i & 1)))
     const odds = fft(arr.filter((_, i) => i & 1))
 
-    const form = index => math.multiply(odds[index], math.exp(math.multiply(math.complex('-2i'), Math.PI * (index / N))))
+    const form = index => math.multiply(odds[index], math
+        .exp(math
+            .multiply(math
+                .complex('-2i'), Math.PI * (index / N))))
 
     const arr1 = createArray(N / 2).map((_, i) => math.add(evens[i], form(i)))
     const arr2 = createArray(N / 2).map((_, i) => math.subtract(evens[i], form(i)))
@@ -89,6 +92,7 @@ const newGraphic = (name, arr) => ({
 
 //Usage
 window.onload = function() {
+
     const ctx = document.querySelector('#myChart').getContext('2d')
     const sig1 = createSignal(N)
     const graphic = new Chart(ctx, conf('1.0', N, sig1))

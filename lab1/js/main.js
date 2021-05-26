@@ -90,31 +90,46 @@ const newGraphic = (name, arr) => ({
 })
 
 //Usage
-window.onload = function() {
-    const ctx = document.querySelector('#myChart').getContext('2d')
-    const ctx2 = document.querySelector('#secChart').getContext('2d')
-    const ctx3 = document.querySelector('#thirdChart').getContext('2d')
+// window.onload = function() {
+//     const ctx = document.querySelector('#myChart').getContext('2d')
+//     const ctx2 = document.querySelector('#secChart').getContext('2d')
+//     const ctx3 = document.querySelector('#thirdChart').getContext('2d')
 
-    const sig1 = main()
-    const sig2 = main()
+//     const sig1 = main()
+//     const sig2 = main()
 
-    const graphic = new Chart(ctx, conf('1.0', N, sig1))
-    console.log('Середнє значення', average(sig1))
-    console.log('Дисперсія', mathAverageTrick(sig1))
+//     const graphic = new Chart(ctx, conf('1.0', N, sig1))
+//     console.log('Середнє значення', average(sig1))
+//     console.log('Дисперсія', mathAverageTrick(sig1))
 
-    const timeAutoCorelation = howLong('autoCorrelation', () => {
-        const secConf = conf('2.0', N / 2, autoCorrelation(sig1))
-        secConf.data.datasets.push(newGraphic('2.1', sig1))
-        const graphic2 = new Chart(ctx2, secConf)
-    })
+//     console.log('Середнє значення', average([5, 0, 3, 8, 3]))
+//     console.log('Дисперсія', mathAverageTrick([5, 0, 3, 8, 3]))
 
-    const timeCorelation = howLong('correlation', () => {
-        const thirdConf = conf('3.0', N / 2, correlation(sig1, sig2))
-        thirdConf.data.datasets.push(newGraphic('3.1', sig1))
-        thirdConf.data.datasets.push(newGraphic('3.2', sig2))
-        const graphic3 = new Chart(ctx3, thirdConf)
-    })
+//     const timeAutoCorelation = howLong('autoCorrelation', () => {
+//         const secConf = conf('2.0', N / 2, autoCorrelation(sig1))
+//         secConf.data.datasets.push(newGraphic('2.1', sig1))
+//         const graphic2 = new Chart(ctx2, secConf)
+//     })
 
-    console.log(timeAutoCorelation - timeCorelation)
+//     const timeCorelation = howLong('correlation', () => {
+//         const thirdConf = conf('3.0', N / 2, correlation(sig1, sig2))
+//         thirdConf.data.datasets.push(newGraphic('3.1', sig1))
+//         thirdConf.data.datasets.push(newGraphic('3.2', sig2))
+//         const graphic3 = new Chart(ctx3, thirdConf)
+//     })
 
+//     console.log(timeAutoCorelation - timeCorelation)
+
+// }
+
+let tau = 2
+const correlation1 = (sig1, sig2) => {
+    const a1 = average(sig1)
+    const a2 = average(sig2)
+    const mat1 = mathAverageTrick(sig1)
+    const mat2 = mathAverageTrick(sig2)
+    const len = parseInt(sig1.length / 2)
+    const array = createArray(len)
+    return array.map((_, i) => (array.reduce((a, _, j) => a + (sig1[j] - a1) * (sig2[i + tau] - a2) / (len - 1))) / (Math.sqrt(mat1) * Math.sqrt(mat2)))
 }
+console.log('Rxx', correlation1([0, 1, 2], [5, 0, 3, 8, 3]));
