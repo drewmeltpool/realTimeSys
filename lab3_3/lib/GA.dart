@@ -1,4 +1,5 @@
 import 'dart:math';
+
 List<double> fitnessFunction(List<int> deltas) {
   List<double> reverseDeltas = deltas.map((delta) => 1 / delta).toList();
   double reversedDeltaSum =
@@ -120,6 +121,9 @@ List<List<int>> diophant({a, b, c, d, ans, iter}) {
     }
     initVals = newInitVals.getRange(0, 5).toList();
     iterations++;
+    if (iterations > 100) {
+      return null;
+    }
     if (iterations > iter - 1) {
       return [
         initVals[0],

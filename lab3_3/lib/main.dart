@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'GA.dart';
@@ -43,12 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   updateAnswer(ans) {
     setState(() {
-      a = ans[0][0];
-      b = ans[0][1];
-      c = ans[0][2];
-      d = ans[0][3];
-      answer = int.parse(ansNumber.text);
-      iteration = ans[1][0];
+      if (ans != null) {
+        a = ans[0][0];
+        b = ans[0][1];
+        c = ans[0][2];
+        d = ans[0][3];
+        answer = int.parse(ansNumber.text);
+        iteration = ans[1][0];
+      }
     });
   }
 
@@ -155,16 +158,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: EdgeInsets.only(top: 10),
                 child: MaterialButton(
                   onPressed: () {
-                    var x1 = aNumber.text == "" ? 1 : int.parse(aNumber.text);
-                    var x2 = bNumber.text == "" ? 1 : int.parse(bNumber.text);
-                    var x3 = cNumber.text == "" ? 1 : int.parse(cNumber.text);
-                    var x4 = dNumber.text == "" ? 1 : int.parse(dNumber.text);
-                    var ans =
-                        ansNumber.text == "" ? 1 : int.parse(ansNumber.text);
-                    var iter =
-                        iterNumber.text == "" ? 1 : int.parse(iterNumber.text);
+                    var x1 = int.parse(aNumber.text);
+                    var x2 = int.parse(bNumber.text);
+                    var x3 = int.parse(cNumber.text);
+                    var x4 = int.parse(dNumber.text);
+                    var ans = int.parse(ansNumber.text);
+                    var iter = int.parse(iterNumber.text);
                     var dd = diophant(
-                        a: x1, b: x2, c: x3, d: x4, ans: ans, iter: iter);
+                        a: x1, 
+                        b: x2, 
+                        c: x3, 
+                        d: x4, 
+                        ans: ans, 
+                        iter: iter
+                    );
+
+                    if (dd == null) {
+                      _errorDialog();
+                      return;
+                    }
                     updateAnswer(dd);
                   },
                   color: Colors.green,
@@ -179,19 +191,36 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Container(
                 alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(top: 10),
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Text('a: $a'),
-                       Text('b: $b'),
-                       Text('c: $c'),
-                       Text('d: $d'),
-                       Text('answer: $answer'),
-                       Text('iteration: $iteration'),
-                     ],
-                   ),
-                   ),
+                margin: EdgeInsets.only(top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('a: $a'),
+                    Text('b: $b'),
+                    Text('c: $c'),
+                    Text('d: $d'),
+                    Text('answer: $answer'),
+                    Text('iteration: $iteration'),
+                  ],
+                ),
+              ),
             ])));
+  }
+
+  _errorDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Error Dialog"),
+              content: new Text("Itertation > 100"),
+              actions: <Widget>[
+                MaterialButton(
+                  child: Text('Close'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ));
   }
 }
