@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lab3_2/perceptron.dart';
 
@@ -61,7 +63,6 @@ class __PerceptionPageState extends State<PerceptionPage> {
             padding: EdgeInsets.all(16.0),
             child: Column(children: [
               Container(
-                margin: EdgeInsets.only(top: 10),
                 child: TextField(
                   controller: iterationController,
                   keyboardType: TextInputType.number,
@@ -109,10 +110,20 @@ class __PerceptionPageState extends State<PerceptionPage> {
                 margin: EdgeInsets.only(top: 10),
                 child: MaterialButton(
                   onPressed: () {
-                    var iter = int.parse(iterationController.text);
-                    var time = double.parse(maxTimeController.text);
-                    var learn = double.parse(learningController.text);
-                    changeState(perceptron(4, learn, iter, time));
+                    // var iter = int.parse(iterationController.text);
+                    // var time = double.parse(maxTimeController.text);
+                    // var learn = double.parse(learningController.text);
+
+                    // changeState(perceptron(4, learn, iter, time));
+                    var rng = new Random();
+                    var begin = DateTime.now().microsecondsSinceEpoch / 1000;
+                    var end = begin;
+                    const duration = 3000;
+                    while (end - begin < duration) {
+                      print(perceptron(rng.nextInt(100), rng.nextDouble() * 100,
+                          rng.nextInt(100), rng.nextDouble() * 100));
+                      end = DateTime.now().microsecondsSinceEpoch / 1000;
+                    }
                   },
                   color: Colors.green,
                   child: SizedBox(
