@@ -12,7 +12,7 @@ export default class Queue {
 		this.length = 0
 	}
 
-	add(value) {
+	push(value) {
 		const node = new Node(value, null)
 
 		if (this.begin) {
@@ -25,7 +25,7 @@ export default class Queue {
 		this.length++
 	}
 
-	remove() {
+	shift() {
 		const current = this.begin
 		this.begin = this.begin.next
 		this.length--
