@@ -6,6 +6,9 @@ export default function deepCopy(obj) {
 				: deepCopy(obj[key])
 			return acc
 		}
+		if (typeof obj[key] === 'function') {
+			acc[key] = obj[key]
+		}
 		acc[key] = obj[key]
 		return acc
 	}, {})
